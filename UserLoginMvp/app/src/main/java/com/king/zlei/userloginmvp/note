@@ -1,0 +1,11 @@
+如果写的仅仅是一个demo,实现mvp非常简单，
+ 1.写界面抽象的接口baseview,由该界面实现，
+ 2.写业务逻辑的抽象类接口，BasePresenter，写具体实现类实现并处理业务逻辑，引入view绑定,销毁(必须实现的)
+ 3.在view的activity层引入业务逻辑的实现类
+但是在项目中使用的话需要进一步抽取封装
+ 1.在最底层baseview中放置所有的view都会用到的显示，比如吐司，单个界面ui显示逻辑可以另外创建子接口，一对一定制模式，显示自己某块的UI
+ 2.BasePresenter中使用泛型，创建基本实现类BasePresenterImp,因为绑定解绑view这里面所有的presenter都会有，具体在创建对应某块的接口比如MainPresenter实现业务逻辑，创建实现类MainPresenterImp
+ 继承BasePresenterImp,实现MainPresenter;
+ 3.在界面内拿到MainPresenterImp实现高某块逻辑
+
+ Mvp创建缺点：类太多，优点解耦
