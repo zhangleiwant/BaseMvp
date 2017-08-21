@@ -8,4 +8,4 @@
  继承BasePresenterImp,实现MainPresenter;
  3.在界面内拿到MainPresenterImp实现高某块逻辑
 
- Mvp创建缺点：类太多，优点解耦
+ Mvp创建缺点：类太多，优点解耦1
