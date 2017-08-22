@@ -8,4 +8,31 @@
  继承BasePresenterImp,实现MainPresenter;
  3.在界面内拿到MainPresenterImp实现高某块逻辑
 
- Mvp创建缺点：类太多，优点解耦1
+ Mvp创建缺点：类太多，优点解耦
+
+
+ Dagger2使用：注解解耦
+ 1.配置：project中添加  classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+ buildscript {
+     repositories {
+         jcenter()
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:2.2.2'
+         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+         // in the individual module build.gradle files
+     }
+ }
+
+ 添加：apply plugin: 'com.neenbedankt.android-apt'//添加apt命令
+ 添加依赖：apt 'com.google.dagger:dagger-compiler:2.4'//置顶注解器
+          compile 'com.google.dagger:dagger:2.4'//dagger公用api
+
+2：简单使用
+    @Inject 在需要依赖的地方使用，构造出类的实例满足他们的额依赖
+    @Module Modules类里面的方法专门提供的依赖，
+    @Provide modules中方法的注解，提供依赖
+    @Component 注入器，是@Inject和@Module的桥梁，连接两个部分
+
+    MainActivity(@inject)->component(接口桥梁，提供实例 @Component(modules = {XXXModule.class})依赖modules)->Module(@Module  @provide方法)
+    切记：Rebuild
