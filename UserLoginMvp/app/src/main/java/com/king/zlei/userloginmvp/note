@@ -33,6 +33,17 @@
     @Module Modules类里面的方法专门提供的依赖，
     @Provide modules中方法的注解，提供依赖
     @Component 注入器，是@Inject和@Module的桥梁，连接两个部分
+    @Scope:Scope自定义注解限定注解作用域
+    @Qualifier:当类的类型不足以鉴定一个依赖的时候可以使用这个注解标识
 
     MainActivity(@inject)->component(接口桥梁，提供实例 @Component(modules = {XXXModule.class})依赖modules)->Module(@Module  @provide方法)
     切记：Rebuild
+
+    MainPresenterIml_Factory与MainPresenterIml对应：
+    get():返回的MainPresenterIml，是需要的实例对象，最后一定调用的get()方法实例化对象；
+    viewprovide.get()返回的就是我们需要的MainBaseview
+    create()：创建本类对象并返回
+
+    MainModule_ProvideMainBaseFactory与MainModule对应：
+    get():返回值是MainBaseView;viewProvider就是MainModule_ProvideMainBaseFactory
+    create():创建本类对象
